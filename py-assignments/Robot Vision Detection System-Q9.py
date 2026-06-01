@@ -1,0 +1,72 @@
+detections = [
+    {
+        "object": "box",
+        "confidence": 78,
+        "mode": "infrared",
+        "distance": 2.5
+    },
+
+    {
+        "object": "human",
+        "confidence": 95,
+        "mode": "camera",
+        "distance": 1.2
+    },
+
+    {
+        "object": "ball",
+        "confidence": 82,
+        "mode": "ultrasonic",
+        "distance": 3.0
+    },
+
+    {
+        "object": "human",
+        "confidence": 88,
+        "mode": "camera",
+        "distance": 0.8
+    },
+
+    {
+        "object": "chair",
+        "confidence": 70,
+        "mode": "infrared",
+        "distance": 2.8
+    }
+]
+
+
+human_detections = list(
+    filter(
+        lambda item:
+        item["object"] == "human"
+        and item["confidence"] > 85,
+        detections
+    )
+)
+
+
+distances = list(
+    map(
+        lambda item: item["distance"],
+        human_detections
+    )
+)
+
+print("Human Detections:")
+for detection in human_detections:
+    print(detection)
+
+print("\nDistances:")
+print(distances)
+
+
+print("\nAlerts:")
+
+for distance in distances:
+
+    if distance < 1:
+        print("ALERT! Human is very close.")
+
+    else:
+        print("Human detected at safe distance.")
