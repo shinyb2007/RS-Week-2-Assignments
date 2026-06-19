@@ -17,3 +17,4 @@ print(a[2,:])
 
 print("\nRequired Subarray:")
 print(a[0:2,1:3])
+print(a[1:3,0:2])
